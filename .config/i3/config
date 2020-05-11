@@ -1,0 +1,240 @@
+# Custom i3gaps config file, by lolikommando
+#
+# This config file uses keycodes (bindsym) and was written for the 
+# QWERTY/QWERTZ layout.
+#  
+# Please see https://i3wm.org/docs/userguide.html for a complete reference of the original i3 config file!
+
+
+# Set correct screen position (this setting is different on every machine and only needed if
+# you have more than one monitor, the man page of xrandr will help to set it right)
+#exec xrandr --output HDMI-A-0 --pos 0x0
+#exec xrandr --output DisplayPort-2 --right-of HDMI-A-0  
+
+# Disable mouse focus
+focus_follows_mouse no
+
+# Mod key variable
+set $mod Mod4
+
+# Disable window titlebars entirely
+#for_window [class="^.*"] border pixel 3
+
+# Set inner/outer gaps
+gaps inner 10
+gaps outer 0
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+#smart_gaps on
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+#smart_borders on
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn't scale on retina/hidpi displays.
+
+# Colors
+set $black	#000000
+set $white	#FEFEFE
+set $gray	#A9A9A9
+set $dgray	#494949
+set $green	#799F26
+set $blue	#315BEF
+set $lblue	#4D73AA
+set $pink	#FF2491
+set $purple	#73538E
+set $purple	#9932CC
+set $red	#FF0800
+set $lred	#F65955
+set $bred	#E60012
+set $orange	#FFA800
+set $cyan	#0FDCB6
+set $dark	#101115
+
+#class			border	backgr.	text	indicator
+client.focused		$purple	$purple	$white	$gray
+client.focused_inactive	$gray	$gray	$dark	$dark  
+client.unfocused	$gray	$gray	$dark	$dark
+client.urgent		$orange	$orange	$white	$red
+
+# Use Mouse+Mod4 to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Start dmenu (a program launcher)
+bindsym Mod1+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop
+
+# Start dmenu_find, quick file search on all mounted storage devices
+# with the help of dmenu in a small bash script
+bindsym Mod1+f exec dmenu_find.sh
+
+
+# Change focus
+bindsym $mod+l focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+h focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+l move left 100px
+bindsym $mod+Shift+j move down 100px
+bindsym $mod+Shift+k move up 100px
+bindsym $mod+Shift+h move right 100px
+
+bindsym $mod+Shift+Left move left 100px
+bindsym $mod+Shift+Down move down 100px
+bindsym $mod+Shift+Up move up 100px
+bindsym $mod+Shift+Right move right 100px
+
+# Split in horizontal orientation
+bindsym $mod+b split h
+
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+Shift+a focus child 
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Custom script for logout shutdown and restart
+bindsym $mod+Shift+e exec exitsh
+
+# resize window
+bindsym Mod1+Left	resize shrink width 50 px or 10 ppt
+bindsym Mod1+Down	resize grow height 50 px or 10 ppt
+bindsym Mod1+Up		resize shrink height 50 px or 10 ppt
+bindsym Mod1+Right	resize grow width 50 px or 10 ppt
+
+# Start i3bar to display a workspace bar (with i3blocks as feed generator)
+
+bar {
+	status_command i3blocks -c ~/.config/i3blocks/config
+	i3bar_command i3bar -t
+	position top
+	font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+	colors {
+		statusline	#999999
+		background	#000000
+
+		# Colors		border		backgr.		text
+		focused_workspace	$purple		$purple		$white
+	        active_workspace	$gray		$gray		$dark
+		inactive_workspace	$black		$black		$white
+		urgent_workspace	$orange		$orange		$dark
+	}
+}
+# Autostart
+
+exec --no-startup-id i3-msg 'workspace 2; exec /usr/games/steam'
+exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/qbittorrent'
+exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/discord'
+exec --no-startup-id i3-msg 'workspace 2; exec /usr/bin/pavucontrol'
+
+
+# Take screenshots with scrot
+
+bindsym $mod+F11 exec scrot -u 
+bindsym $mod+F12 exec scrot
+ 
+# Program shortcuts
+#
+
+# Sakura
+bindsym Mod1+0 exec urxvt
+
+# Firefox
+bindsym Mod1+1 exec firefox-esr
+
+# File manager
+bindsym Mod1+2 exec urxvt -e ranger
+
+# Steam
+bindsym Mod1+3 exec steam
+
+# TS3
+bindsym Mod1+4 exec discord
+
+# Virtualbox
+bindsym Mod1+5 exec virtualbox
+
+# Virt-manager
+bindsym Mod1+6 exec virt-manager
